@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Weather Notification</title>
+</head>
+<body>
+<div align="center">
+	<h1>Weather Notification</h1>
+	<a href="new">Create A New Weather Report</a>
+	<br><br>
+	<table border="1" cellpadding="10" style="text-align:center">
+		<thead>
+			<tr>
+				<th>Zip Code</th>
+				<th>City Name</th>
+				<th>Weather Condition</th>
+				<th>Temperature</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="City : ${listCity}">
+				<!-- the City in the <th:each> should match the City in the ${ }-->
+				<td th:text="${City.id}">Zip Code</td>
+				<td th:text="${City.name}">City Name</td>
+				<td th:text="${City.weatherdescription}">Weather Condition</td>
+				<td th:text="${City.temperature}"></td>
+				<td>
+					<!-- direct to the EditReport.html -->
+					<a th:href="@{'/edit/' + ${City.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/delete/' + ${City.id}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>
